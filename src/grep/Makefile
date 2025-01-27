@@ -4,6 +4,7 @@ COMP=gcc
 CFLAGS=-c -Wall -Werror -Wextra
 SOURCES =main.c output_grep.c parser_grep.c ../common/errors.c
 OBJECTS =$(SOURCES:.c=.o)
+PREFIX=/usr/local/bin
 EXECUTABLE =vt_grep
 
 vt_grep:
@@ -21,3 +22,11 @@ rebuild:
 	make clean s21_grep
 test:
 	bash test.sh
+install:
+	install $(EXECUTABLE) $(PREFIX)
+uninstall:
+	rm -rf $(PREFIX)/$(EXECUTABLE)
+sudo_install: 
+	sudo install $(EXECUTABLE) $(PREFIX)
+sudo_uninstall:
+	sudo rm -rf $(PREFIX)/$(EXECUTABLE)
